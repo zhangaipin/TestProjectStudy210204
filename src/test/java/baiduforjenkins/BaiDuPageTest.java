@@ -28,6 +28,6 @@ class BaiDuPageTest {git
     void lessMethod() {
         int num = baiDuPage.lessMethod(11,3);
         System.out.println(num);
-        assertEquals(num,12);
+        assertEquals(num,8);
     }
 }
