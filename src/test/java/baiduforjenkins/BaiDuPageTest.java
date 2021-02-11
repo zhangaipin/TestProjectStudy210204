@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @description:
  * @time: 2021/2/4 23:39
  */
-class BaiDuPageTest {git
+class BaiDuPageTest {
     static BaiDuPage baiDuPage = null;
     @BeforeAll
     public static void setUp() {
@@ -19,15 +19,15 @@ class BaiDuPageTest {git
     }
 
     @Test
-    void addMethod() {
+    void addMethodTest() {
         int num = baiDuPage.addMethod(4,7);
         assertEquals(num,11);
     }
 
     @Test
-    void lessMethod() {
+    void lessMethodTest() {
         int num = baiDuPage.lessMethod(11,3);
         System.out.println(num);
-        assertEquals(num,12);
+        assertEquals(num,8);
     }
 }
