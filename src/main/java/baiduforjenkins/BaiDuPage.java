@@ -1,4 +1,6 @@
 package baiduforjenkins;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @description:
@@ -6,6 +8,7 @@ package baiduforjenkins;
  * @time: 2021/2/4 23:10
  */
 public class BaiDuPage {
+    public static final Logger Log = LoggerFactory.getLogger(BaiDuPage.class);
     /**
      * @Description: 加法计算
      * @param	a
@@ -16,6 +19,7 @@ public class BaiDuPage {
     public int addMethod(int a, int b){
         int num = a + b;
         System.out.println("加法计算：" +a+" + "+b +" = "+num);
+        Log.info("加法计算：" +a+" + "+b +" = "+num);
         return num;
     }
 
@@ -29,6 +33,7 @@ public class BaiDuPage {
     public int lessMethod(int a, int b){
         int num = a - b;
         System.out.println("减法计算：" +a+" - "+b+ " = "+num);
+        Log.info("减法计算：" +a+" - "+b+ " = "+num);
         return num;
     }
 }
