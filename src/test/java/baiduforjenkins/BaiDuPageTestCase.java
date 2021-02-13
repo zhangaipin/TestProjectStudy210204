@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @description:
  * @time: 2021/2/4 23:39
  */
-class BaiDuPageTestCase {
+public class BaiDuPageTestCase {
     static BaiDuPage baiDuPage = null;
     @BeforeAll
     public static void setUp() {
@@ -25,7 +25,6 @@ class BaiDuPageTestCase {
     @Test
     void lessMethodTest() {
         int num = baiDuPage.lessMethod(11,3);
-        System.out.println(num);
         assertEquals(num,8);
     }
 }

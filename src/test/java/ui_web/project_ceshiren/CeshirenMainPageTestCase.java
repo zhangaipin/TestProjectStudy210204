@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @description:
  * @time: 2021/2/12 23:26
  */
-class CeshirenMainPageTestCase {
+public class CeshirenMainPageTestCase {
     static CeshirenMainPage ceshirenMainPage;
 
     @BeforeAll
