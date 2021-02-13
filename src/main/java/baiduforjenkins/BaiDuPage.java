@@ -18,7 +18,6 @@ public class BaiDuPage {
      **/
     public int addMethod(int a, int b){
         int num = a + b;
-        System.out.println("加法计算：" +a+" + "+b +" = "+num);
         Log.info("加法计算：" +a+" + "+b +" = "+num);
         return num;
     }
@@ -32,7 +31,6 @@ public class BaiDuPage {
      **/
     public int lessMethod(int a, int b){
         int num = a - b;
-        System.out.println("减法计算：" +a+" - "+b+ " = "+num);
         Log.info("减法计算：" +a+" - "+b+ " = "+num);
         return num;
     }
