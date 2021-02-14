@@ -12,7 +12,7 @@ public class CeshirenBasePage extends BasePage {
     public CeshirenBasePage(String URL) {
         //todo:替换path相对路径，来适合远程Jenkins
         super(
-                "src/main/resources/chromedriver.exe",
+                "/usr/local/bin/chromedriver.exe",
                 URL
         );
     }
