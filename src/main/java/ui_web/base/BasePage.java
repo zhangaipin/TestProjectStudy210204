@@ -1,7 +1,9 @@
 package ui_web.base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,7 +18,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class BasePage {
     public static final Logger Log = LoggerFactory.getLogger(BasePage.class);
-    RemoteWebDriver driver;
+//    RemoteWebDriver driver;
+    ChromeOptions options;
+    WebDriver driver;
     WebDriverWait wait;
 
     /**
@@ -28,8 +32,15 @@ public class BasePage {
      **/
     public BasePage(String chromeDriverPath, String URL) {
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        driver=new ChromeDriver();
+//        driver=new ChromeDriver();
+        options = new ChromeOptions();
+        options.addArguments("--lang=zh_CN.UTF-8");
+
+        options.addArguments("--no-sandbox", "--disable-dev-shm-usage"); // Bypass OS security model, overcome limited resource problems
+
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
         wait=new WebDriverWait(driver, 15);
         Log.info("测试开始，浏览器启动！");
         driver.get(URL);
@@ -41,7 +52,7 @@ public class BasePage {
      * @Return:
      * @Date: 2021/2/12 22:37
      **/
-    public BasePage(RemoteWebDriver driver){
+    public BasePage(WebDriver driver){
         this.driver = driver;
     }
 

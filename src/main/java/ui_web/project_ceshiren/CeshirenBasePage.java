@@ -1,6 +1,7 @@
 package ui_web.project_ceshiren;
 
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import ui_web.base.BasePage;
 
@@ -11,13 +12,19 @@ import ui_web.base.BasePage;
 public class CeshirenBasePage extends BasePage {
     public CeshirenBasePage(String URL) {
         //todo:替换path相对路径，来适合远程Jenkins
+//        super(
+//                "/usr/local/bin/chromedriver",
+//                URL
+//        );
+
         super(
-                "/usr/local/bin/chromedriver",
+                "src/main/resources/chromedriver.exe",
                 URL
         );
+
     }
 
-    public CeshirenBasePage(RemoteWebDriver driver) {
+    public CeshirenBasePage(WebDriver driver) {
         super(driver);
     }
 }
