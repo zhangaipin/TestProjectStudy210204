@@ -43,7 +43,8 @@ public class BasePage {
             options.addArguments("--disable-gpu"); // applicable to windows os only谷歌文档提到需要加上这个属性来规避bug
             options.addArguments("--disable-dev-shm-usage");
         }else if (server.equals("alibaba")){
-//            System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+            //服务器中chromedriver已经设置了环境变量，但是没有效果 todo:
+            System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
             options = new ChromeOptions();
             //制定启动需要带的一些参数，适用于服务器
             options.addArguments("--lang=zh_CN.UTF-8");
