@@ -27,25 +27,39 @@ public class BasePage {
      * @Description: 启动浏览器，打开目标网址
      * @param:	chromeDriverPath driver驱动存放路径
      * @param:	URL 测试的目标网址
+     * @param:	server 测试服务器，local和alibaba
      * @Return:
-     * @Date: 2021/2/12 22:39
+     * @Date: 2021/2/16 0:00
      **/
-    public BasePage(String chromeDriverPath, String URL) {
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-//        driver=new ChromeDriver();
-        options = new ChromeOptions();
-        //制定启动需要带的一些参数，适用于服务器
-        options.addArguments("--lang=zh_CN.UTF-8");
-//        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080","--ignore-certificate-errors");
-        options.addArguments("start-maximized"); // open Browser in maximized mode
-        options.addArguments("disable-infobars"); // disabling info-bars
-        options.addArguments("--disable-extensions"); // disabling extensions
-        options.addArguments("--disable-gpu"); // applicable to windows os only
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage"); // Bypass OS security model, overcome limited resource problems
-
+    public BasePage(String chromeDriverPath, String URL, String server){
+        if (server.equals("local")){
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+            options = new ChromeOptions();
+            //制定启动需要带的一些参数，适用于服务器
+            options.addArguments("--lang=zh_CN.UTF-8");
+            options.addArguments("start-maximized"); // 最大化运行（全屏窗口）,不设置，可能取元素会报错
+            options.addArguments("disable-infobars"); // 隐藏启动浏览器出现‘Chrome正在受到自动软件的控制’提示
+            options.addArguments("--disable-extensions"); // 禁止扩展
+            options.addArguments("--disable-gpu"); // applicable to windows os only谷歌文档提到需要加上这个属性来规避bug
+            options.addArguments("--disable-dev-shm-usage");
+        }else if (server.equals("alibaba")){
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+            options = new ChromeOptions();
+            //制定启动需要带的一些参数，适用于服务器
+            options.addArguments("--lang=zh_CN.UTF-8");
+            options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080","--ignore-certificate-errors");
+            options.addArguments("start-maximized"); // 最大化运行（全屏窗口）,不设置，可能取元素会报错
+            options.addArguments("disable-infobars"); // 隐藏启动浏览器出现‘Chrome正在受到自动软件的控制’提示
+            options.addArguments("--disable-extensions"); // 禁止扩展
+            options.addArguments("--disable-gpu"); // applicable to windows os only谷歌文档提到需要加上这个属性来规避bug
+            options.addArguments("--no-sandbox"); // //取消沙盘模式,为了让root用户也能执行
+            options.addArguments("--disable-dev-shm-usage");
+        }else {
+            Log.info("开发中，请期待！");
+            System.exit(0);
+        }
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
         wait=new WebDriverWait(driver, 15);
         Log.info("测试开始，浏览器启动！");
         driver.get(URL);
