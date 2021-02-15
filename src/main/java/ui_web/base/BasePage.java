@@ -36,7 +36,16 @@ public class BasePage {
         options = new ChromeOptions();
         options.addArguments("--lang=zh_CN.UTF-8");
 
+        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080","--ignore-certificate-errors");
+        options.addArguments("start-maximized"); // open Browser in maximized mode
+        options.addArguments("disable-infobars"); // disabling info-bars
+        options.addArguments("--disable-extensions"); // disabling extensions
+        options.addArguments("--disable-gpu"); // applicable to windows os only
         options.addArguments("--no-sandbox", "--disable-dev-shm-usage"); // Bypass OS security model, overcome limited resource problems
+
+//        options.addArguments("--no-sandbox", "--disable-dev-shm-usage"); // Bypass OS security model, overcome limited resource problems
+//        options.addArguments("--disable-dev-shm-usage");
+//        options.addArguments("--headless");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
