@@ -31,7 +31,7 @@ public class BasePage {
      * @Return:
      * @Date: 2021/2/16 0:00
      **/
-    public BasePage(String chromeDriverPath, String URL, String server){
+    public BasePage(String URL, String server){
         if (server.equals("local")){
             System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
             options = new ChromeOptions();
