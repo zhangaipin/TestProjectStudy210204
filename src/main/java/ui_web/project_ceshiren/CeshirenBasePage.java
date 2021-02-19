@@ -2,7 +2,6 @@ package ui_web.project_ceshiren;
 
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import ui_web.base.BasePage;
 
 /**

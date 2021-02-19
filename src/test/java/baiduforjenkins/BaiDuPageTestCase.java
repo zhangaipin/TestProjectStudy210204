@@ -3,7 +3,8 @@ package baiduforjenkins;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @description:
@@ -20,6 +21,12 @@ public class BaiDuPageTestCase {
     void addMethodTest() {
         int num = baiDuPage.addMethod(4,7);
         assertEquals(num,11);
+        assertAll(
+                "计算结果验证不通过",
+                ()-> assertEquals(1,1),
+                ()-> assertEquals(1,2),
+                ()-> assertEquals(2,2)
+                );
     }
 
     @Test

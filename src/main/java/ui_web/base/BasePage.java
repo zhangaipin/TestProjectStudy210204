@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -18,9 +17,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class BasePage {
     public static final Logger Log = LoggerFactory.getLogger(BasePage.class);
+    public static WebDriver driver;
 //    RemoteWebDriver driver;
     ChromeOptions options;
-    WebDriver driver;
     WebDriverWait wait;
 
     /**
@@ -135,4 +134,30 @@ public class BasePage {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
         driver.findElement(by).sendKeys(path);
     }
+
+    /**
+     * @Description: 获取页面标题
+     * @param:
+     * @Return: java.lang.String
+     * @Date: 2021/2/19 23:17
+     **/
+    public String getPageTitle(){
+        String title = driver.getTitle();
+        return title;
+    }
+
+    /**
+     * @Description: 获取定位的文本信息
+     * @param:	by
+     * @Return: java.lang.String
+     * @Date: 2021/2/20 0:12
+     **/
+    public String getEleText(By by){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        String eleText = driver.findElement(by).getText();
+        return eleText;
+    }
+
+
+
 }
