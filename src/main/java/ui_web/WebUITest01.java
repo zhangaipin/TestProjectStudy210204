@@ -1,5 +1,6 @@
 package ui_web;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -32,13 +33,27 @@ public class WebUITest01 {
         options.addArguments("--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        wait=new WebDriverWait(driver, 15);
+//        wait=new WebDriverWait(driver, 15);
         Log.info("测试开始，浏览器启动！");
         driver.get(URL);
         String title = driver.getTitle();
         System.out.println("获取的页面标题为："+title);
+//        去往登录/注册页面
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id='csdn-toolbar']/div/div/div[3]/div/div[1]")).click();
+
+
+        //        切换为账号和密码登录
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id='app']/div/div/div[1]/div[2]/div[5]/ul/li[2]")).click();
+
+        Thread.sleep(3000);
+        String wangjimima = driver.findElement(By.xpath("//*[@id='app']/div/div/div[1]/div[2]/div[5]/div/div[5]/div/a")).getText();
+        System.out.println("wangjimima为："+wangjimima);
+
         Thread.sleep(3000);
         driver.quit();
+
     }
 
     public static void main(String[] args) throws InterruptedException {

@@ -1,5 +1,6 @@
 package ui_web.project_csdn;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ui_web.base.BasePage;
 
@@ -8,7 +9,6 @@ import ui_web.base.BasePage;
  * @time: 2021/2/19 22:32
  */
 public class CsdnBasePage extends BasePage {
-    public static WebDriver driver;
     /**
      * @Description: 启动浏览器
      * @param:	URL
@@ -26,7 +26,7 @@ public class CsdnBasePage extends BasePage {
      * @Return:
      * @Date: 2021/2/19 23:55
      **/
-    public CsdnBasePage() {
-        super(driver);
-    }
+//    public CsdnBasePage(WebDriver driver) {
+//        super(driver);
+//    }
 }

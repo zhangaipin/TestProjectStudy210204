@@ -1,9 +1,12 @@
 package ui_web.base;
 
+import com.sun.org.apache.xpath.internal.objects.XNull;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -16,11 +19,12 @@ import java.util.concurrent.TimeUnit;
  * @time: 2021/2/12 22:23
  */
 public class BasePage {
+    //初始化日志记录插件
     public static final Logger Log = LoggerFactory.getLogger(BasePage.class);
-    public static WebDriver driver;
-//    RemoteWebDriver driver;
-    ChromeOptions options;
-    WebDriverWait wait;
+    public WebDriver driver = null;         //访问修饰符改为public，是为了跨包可以使用
+//    public RemoteWebDriver driver = null;         //访问修饰符改为public，是为了跨包可以使用
+    public ChromeOptions options = null;
+    public WebDriverWait wait = null;
 
     /**
      * @Description: 启动浏览器，打开目标网址
@@ -93,9 +97,12 @@ public class BasePage {
      * @Date: 2021/2/12 22:45
      **/
     public void click(By by){
-        //todo: 异常处理
-        wait.until(ExpectedConditions.elementToBeClickable(by));
-        driver.findElement(by).click();
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(by));
+            driver.findElement(by).click();
+        } catch (NoSuchElementException e){
+            Log.error(String.valueOf(e));
+        }
     }
 
     /**
@@ -105,10 +112,14 @@ public class BasePage {
      * @Date: 2021/2/13 13:00
      **/
     public void clickLinkText(String linkText){
-        By linkTextBy = By.linkText(linkText);
-        wait.until(ExpectedConditions.elementToBeClickable(linkTextBy));
-        driver.findElement(linkTextBy).click();
-        Log.info("点击 "+linkText+" 按钮");
+        try {
+            By linkTextBy = By.linkText(linkText);
+            wait.until(ExpectedConditions.elementToBeClickable(linkTextBy));
+            driver.findElement(linkTextBy).click();
+            Log.info("点击 "+linkText+" 按钮");
+        } catch (NoSuchElementException e){
+            Log.error(String.valueOf(e));
+        }
     }
 
     /**
@@ -119,8 +130,12 @@ public class BasePage {
      * @Date: 2021/2/12 22:44
      **/
     public void sendKeys(By by, String content){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-        driver.findElement(by).sendKeys(content);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            driver.findElement(by).sendKeys(content);
+        } catch (NoSuchElementException e){
+            Log.error(String.valueOf(e));
+        }
     }
 
     /**
@@ -131,8 +146,12 @@ public class BasePage {
      * @Date: 2021/2/12 22:44
      **/
     public void upload(By by, String path){
-        wait.until(ExpectedConditions.presenceOfElementLocated(by));
-        driver.findElement(by).sendKeys(path);
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(by));
+            driver.findElement(by).sendKeys(path);
+        } catch (NoSuchElementException e){
+            Log.error(String.valueOf(e));
+        }
     }
 
     /**
@@ -142,7 +161,12 @@ public class BasePage {
      * @Date: 2021/2/19 23:17
      **/
     public String getPageTitle(){
-        String title = driver.getTitle();
+        String title = null;
+        try {
+            title = driver.getTitle();
+        } catch (NoSuchElementException e){
+            Log.error(String.valueOf(e));
+        }
         return title;
     }
 
@@ -153,11 +177,29 @@ public class BasePage {
      * @Date: 2021/2/20 0:12
      **/
     public String getEleText(By by){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-        String eleText = driver.findElement(by).getText();
+        String eleText = null;
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            eleText = driver.findElement(by).getText();
+        } catch (NoSuchElementException e){
+            Log.error(String.valueOf(e));
+        }
         return eleText;
     }
 
-
-
+    /**
+     * @Description: 判断元素是否存在
+     * @param:	by
+     * @Return: boolean
+     * @Date: 2021/2/21 22:19
+     **/
+    public boolean isElementExist(By by){
+        boolean exist = false;
+        try {
+            driver.findElement(by);
+        } catch (NoSuchElementException e){
+            Log.error(String.valueOf(e));
+        }
+        return exist;
+    }
 }

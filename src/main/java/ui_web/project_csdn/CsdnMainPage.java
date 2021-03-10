@@ -1,20 +1,19 @@
 package ui_web.project_csdn;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import ui_web.base.BasePage;
 
 /**
  * @description:
  * @time: 2021/2/19 22:34
  */
-public class CsdnMainPage extends CsdnBasePage{
+public class CsdnMainPage extends BasePage {
     private static final String URL = "https://www.csdn.net/";  //测试地址
     private static final String server = "local";       //测试服务器
 //    private static final String server = "alibab";    //阿里服务器
 
-
-    private By loginPageBtn = By.xpath("//*[@class=\"toolbar-btn toolbar-btn-login csdn-toolbar-fl \"]");   //登录页面跳转按钮
-    private By blogPageBtn = By.xpath("//*[@class=\"toolbar-menus csdn-toolbar-fl\"]/li[1]");  //跳转至博客页面
+    private By loginPageBtn = By.xpath("//*[@id='csdn-toolbar']/div/div/div[3]/div/div[1]");   //登录页面跳转按钮
+    private By blogPageBtn = By.xpath("//*[@id='csdn-toolbar']/div/div/div[1]/ul/li[2]");  //跳转至博客页面
 
     /**
      * @Description: 启动浏览器，进去测试人网址主页
@@ -24,11 +23,6 @@ public class CsdnMainPage extends CsdnBasePage{
      **/
     public CsdnMainPage() {
         super(URL, server);
-        String pageTitle = "CSDN - 专业开发者社区";
-        if (pageTitle != getPageTitle()){
-            Log.info("请先确认测试页面地址！");
-            System.exit(0);
-        }
         Log.info("进入URL:" + URL);
     }
 
@@ -37,11 +31,12 @@ public class CsdnMainPage extends CsdnBasePage{
      * @param:
      * @Return: ui_web.project_csdn.CsdnLoginPage
      * @Date: 2021/2/19 23:28
-     **/
+     *
+     * @return*/
     public CsdnLoginPage toLoginPage(){
         click(loginPageBtn);
-        Log.info("点击登录/注册按钮");
-        return new CsdnLoginPage();
+        Log.info("点击页面右上角:登录/注册 按钮");
+        return new CsdnLoginPage(driver);
     }
 
     /**
@@ -49,10 +44,11 @@ public class CsdnMainPage extends CsdnBasePage{
      * @param:
      * @Return: CsdnBlogMainPage
      * @Date: 2021/2/19 23:39
-     **/
-    public CsdnBlogMainPage toBlogMainPage(){
+     *
+     * @return*/
+    public CsdnMainPage toBlogMainPage(){
         click(blogPageBtn);
-        Log.info("点击博客按钮");
-        return new CsdnBlogMainPage();
+        Log.info("点击 博客 按钮");
+        return this;
     }
 }
