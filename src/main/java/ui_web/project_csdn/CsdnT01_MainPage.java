@@ -7,7 +7,7 @@ import ui_web.base.BasePage;
  * @description:
  * @time: 2021/2/19 22:34
  */
-public class CsdnMainPage extends BasePage {
+public class CsdnT01_MainPage extends BasePage {
     private static final String URL = "https://www.csdn.net/";  //测试地址
     private static final String server = "local";       //测试服务器
 //    private static final String server = "alibab";    //阿里服务器
@@ -21,7 +21,7 @@ public class CsdnMainPage extends BasePage {
      * @Return:
      * @Date: 2021/2/12 23:16
      **/
-    public CsdnMainPage() {
+    public CsdnT01_MainPage() {
         super(URL, server);
         Log.info("进入URL:" + URL);
     }
@@ -33,10 +33,10 @@ public class CsdnMainPage extends BasePage {
      * @Date: 2021/2/19 23:28
      *
      * @return*/
-    public CsdnLoginPage toLoginPage(){
+    public CsdnT02_LoginPage toLoginPage(){
         click(loginPageBtn);
         Log.info("点击页面右上角:登录/注册 按钮");
-        return new CsdnLoginPage(driver);
+        return new CsdnT02_LoginPage(driver);
     }
 
     /**
@@ -46,7 +46,7 @@ public class CsdnMainPage extends BasePage {
      * @Date: 2021/2/19 23:39
      *
      * @return*/
-    public CsdnMainPage toBlogMainPage(){
+    public CsdnT01_MainPage toBlogMainPage(){
         click(blogPageBtn);
         Log.info("点击 博客 按钮");
         return this;

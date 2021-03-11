@@ -2,18 +2,16 @@ package ui_web.project_csdn;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @description:
  * @time: 2021/2/21 23:00
  */
 public class CsdnLoginPageTestCase {
-    static CsdnLoginPage csdnLoginPage = null;
-    static CsdnMainPage csdnMainPage = null;
+    static CsdnT02_LoginPage csdnLoginPage = null;
+    static CsdnT01_MainPage csdnMainPage = null;
     @BeforeAll
     public static void setUp() {
-        csdnMainPage = new CsdnMainPage();
+        csdnMainPage = new CsdnT01_MainPage();
     }
 
     @AfterAll
@@ -32,8 +30,8 @@ public class CsdnLoginPageTestCase {
         csdnLoginPage.toUserPwdLoginTab();
         try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
 //
-//        csdnLoginPage.toLogin();
-//        try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
+        csdnLoginPage.toLogin();
+        try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
 
     }
 }

@@ -8,7 +8,7 @@ import ui_web.base.BasePage;
  * @description:
  * @time: 2021/2/19 23:28
  */
-public class CsdnLoginPage extends BasePage {
+public class CsdnT02_LoginPage extends BasePage {
     private By userPwdLoginBtn = By.xpath("//*[@id=\"app\"]/div/div/div[1]/div[2]/div[5]/ul/li[2]");  //账号密码登录方式切换按钮
     private By userPwdLoginTabName = By.xpath("//*[@id='tabOne']");    //登录的Tab标题
     private By usernameText = By.xpath("//*[@id=\"all\"]"); //账号输入框
@@ -22,7 +22,7 @@ public class CsdnLoginPage extends BasePage {
      * @Return:
      * @Date: 2021/3/7 21:46
      **/
-    public CsdnLoginPage(WebDriver driver) {
+    public CsdnT02_LoginPage(WebDriver driver) {
         super(driver);
     }
 
