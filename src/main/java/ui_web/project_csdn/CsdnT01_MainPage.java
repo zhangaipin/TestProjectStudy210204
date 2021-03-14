@@ -15,7 +15,13 @@ public class CsdnT01_MainPage extends BasePage {
     private By loginPageBtn = By.xpath("//*[@id='csdn-toolbar']/div/div/div[3]/div/div[1]");   //登录页面跳转按钮
     private By blogPageBtn = By.xpath("//*[@id='csdn-toolbar']/div/div/div[1]/ul/li[2]");  //跳转至博客页面
 
+    private By mainPageBtn = By.xpath("//*[@class=\"active \"]");  //顶部的首页按钮
+    private By searchBox = By.xpath("//*[@id=\"toolbar-search-input\"]");   //搜索框
+    private By searchBtn = By.xpath("//*[@id=\"toolbar-search-button\"]");    //搜索按钮
+
+
     /**
+     *
      * @Description: 启动浏览器，进去测试人网址主页
      * @param:	URL
      * @Return:
@@ -51,4 +57,13 @@ public class CsdnT01_MainPage extends BasePage {
         Log.info("点击 博客 按钮");
         return this;
     }
+
+    public void searchOperation(String content){
+        click(mainPageBtn);
+        click(searchBox);
+        sendKeys(searchBox,content);
+        click(searchBtn);
+    }
+
+
 }
